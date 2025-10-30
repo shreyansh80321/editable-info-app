@@ -13,7 +13,7 @@ const Home = () => {
   const [isEditing, setIsEditing] = useState(false);
   const navigate = useNavigate();
 
-  // Fetch profile
+
   const fetchProfile = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -53,8 +53,6 @@ const Home = () => {
   const handlePasswordChange = (e) => {
     setPasswords((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-
-  // Save handler: ALWAYS attempt to save when Save Changes is clicked.
   const handleSave = async (e) => {
     e.preventDefault();
 
@@ -63,17 +61,12 @@ const Home = () => {
       toast.error("No token found. Please login again.");
       return;
     }
-
-    // Always send name & email (backend will update/validate)
     const payload = {
       name: user.name,
       email: user.email,
     };
-
-    // Include password fields ONLY if currentPassword is provided (per backend)
     if (passwords.currentPassword && passwords.currentPassword.trim() !== "") {
       payload.currentPassword = passwords.currentPassword;
-      // include newPassword even if empty? we include it but backend will reject empty newPassword.
       payload.newPassword = passwords.newPassword;
     }
 
@@ -89,9 +82,7 @@ const Home = () => {
       if (res.data && res.data.success) {
         toast.success(res.data.message || "Profile updated successfully!");
         setIsEditing(false);
-        // clear password inputs after successful update
         setPasswords({ currentPassword: "", newPassword: "" });
-        // refresh profile to reflect changes
         fetchProfile();
       } else {
         toast.error(res.data?.message || "Failed to update profile");
