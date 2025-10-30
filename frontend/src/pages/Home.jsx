@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [user, setUser] = useState({ name: "", email: "" });
@@ -10,6 +11,7 @@ const Home = () => {
     newPassword: "",
   });
   const [isEditing, setIsEditing] = useState(false);
+  const navigate = useNavigate();
 
   // Fetch profile
   const fetchProfile = async () => {
@@ -17,7 +19,7 @@ const Home = () => {
       const token = localStorage.getItem("token");
       if (!token) {
         toast.error("No token found. Please login again.");
-        window.location.href = "/login";
+        navigate('/login')
         return;
       }
 
@@ -236,7 +238,7 @@ const Home = () => {
                     className="btn btn-link text-danger text-decoration-none fw-medium"
                     onClick={() => {
                       localStorage.removeItem("token");
-                      window.location.href = "/login";
+                      navigate('/login')
                     }}
                   >
                     Logout
