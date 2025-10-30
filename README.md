@@ -193,10 +193,4 @@ MongoDB
 
 Vercel
 
-yaml
-Copy code
 
----
-
-Would you like me to **add deployment commands** (for example, how to connect each folder to Vercel via CLI) in this same file?  
-I can append that section neatly at the end.
