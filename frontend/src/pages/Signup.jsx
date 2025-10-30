@@ -29,7 +29,7 @@ const Signup = () => {
    
     
     try {
-      const url = "http://localhost:3000/api/user/register";
+      const url = "https://editable-info-app-backend.vercel.app/api/user/register";
       const response = await axios.post(url, form);
       console.log(response.data);
 

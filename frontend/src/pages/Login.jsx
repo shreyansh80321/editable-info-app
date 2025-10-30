@@ -27,7 +27,7 @@ const Login = () => {
     }
 
     try {
-      const url = "http://localhost:3000/api/user/login";
+      const url = "https://editable-info-app-backend.vercel.app/api/user/login";
       const response = await axios.post(url, form);
       console.log(response.data);
 

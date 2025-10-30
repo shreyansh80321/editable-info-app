@@ -21,9 +21,12 @@ const Home = () => {
         return;
       }
 
-      const res = await axios.get("http://localhost:3000/api/user/profile", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await axios.get(
+        "https://editable-info-app-backend.vercel.app/api/user/profile",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
 
       if (res.data && res.data.success) {
         setUser({ name: res.data.name || "", email: res.data.email || "" });
@@ -74,7 +77,7 @@ const Home = () => {
 
     try {
       const res = await axios.put(
-        "http://localhost:3000/api/user/update",
+        "https://editable-info-app-backend.vercel.app/api/user/update",
         payload,
         {
           headers: { Authorization: `Bearer ${token}` },
